@@ -44,7 +44,7 @@ const userGet = async (
 };
 
 const userPost = async (
-  req: Request<{}, {}, User>,
+  req: Request<object, object, User>,
   res: Response<UserResponse>,
   next: NextFunction,
 ) => {
@@ -66,12 +66,13 @@ const userPost = async (
     };
     res.json(response);
   } catch (error) {
+    console.log('error', error);
     next(new CustomError('Duplicate entry', 400));
   }
 };
 
 const userPut = async (
-  req: Request<{}, {}, User>,
+  req: Request<object, object, User>,
   res: Response<UserResponse, {user: TokenContent}>,
   next: NextFunction,
 ) => {
@@ -127,7 +128,7 @@ const userDelete = async (
 };
 
 const userPutAsAdmin = async (
-  req: Request<{id: string}, {}, User>,
+  req: Request<{id: string}, object, User>,
   res: Response<UserResponse, {user: TokenContent}>,
   next: NextFunction,
 ) => {

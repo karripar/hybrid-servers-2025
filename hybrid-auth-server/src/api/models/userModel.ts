@@ -91,7 +91,7 @@ const modifyUser = async (
     const allowedFields = ['username', 'email', 'password', 'user_level_id'];
     const updates = Object.entries(user)
       .filter(([key]) => allowedFields.includes(key))
-      .map(([key, value]) => `${key} = ?`);
+      .map(([key]) => `${key} = ?`);
     const values = Object.entries(user)
       .filter(([key]) => allowedFields.includes(key))
       .map(([, value]) => value);

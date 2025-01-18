@@ -15,7 +15,7 @@ const login = async (
     const {username, password} = req.body;
     const user = await getUserByUsername(username);
 
-    if (!bcrypt.compareSync(password, user.password)) {
+    if (!bcrypt.compare(password, user.password)) {
       next(new CustomError('Incorrect username/password', 403));
       return;
     }

@@ -12,9 +12,9 @@ import {
 import {authenticate, validationErrors} from '../../middlewares';
 import {body, param} from 'express-validator';
 
-const router = express.Router();
+const commentRouter = express.Router();
 
-router
+commentRouter
   .route('/')
   .get(commentListGet)
   .post(
@@ -30,7 +30,7 @@ router
     commentPost,
   );
 
-router
+commentRouter
   .route('/bymedia/:id')
   .get(
     param('id').isInt({min: 1}).toInt(),
@@ -38,9 +38,9 @@ router
     commentListByMediaIdGet,
   );
 
-router.route('/byuser').get(authenticate, commentListByUserGet);
+commentRouter.route('/byuser').get(authenticate, commentListByUserGet);
 
-router
+commentRouter
   .route('/count/:id')
   .get(
     param('id').isInt({min: 1}).toInt(),
@@ -48,7 +48,7 @@ router
     commentCountByMediaIdGet,
   );
 
-router
+commentRouter
   .route('/:id')
   .get(param('id').isInt({min: 1}).toInt(), validationErrors, commentGet)
   .put(
@@ -70,4 +70,4 @@ router
     commentDelete,
   );
 
-export default router;
+export default commentRouter;
